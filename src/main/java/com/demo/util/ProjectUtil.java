@@ -26,8 +26,9 @@ public class ProjectUtil {
 			}
 		});		
 		for (File projectFile : projects) {
+			System.out.println("ProjectFile path : " + projectFile.getPath());
 			//2、 读取每个项目XML文件 （如果没有xml文件，则扫描注解）
-			WebXML webXML = new WebXmlConfigUtil().loadXml(projectFile.getPath() + "\\WEB-INF\\web.xml");
+			WebXML webXML = new WebXmlConfigUtil().loadXml(projectFile.getPath() + "\\WEB-INF\\web.xml", new ProjectUtil().new WebXML());
 			webXML.projectPath = projectFile.getPath();
 			//3、 调用servlet之前需要先进行类加载
 			webXML.loadServlet();

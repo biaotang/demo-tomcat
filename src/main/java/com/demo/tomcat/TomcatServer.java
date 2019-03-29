@@ -30,6 +30,7 @@ public class TomcatServer {
 	public static void main(String[] args) throws Exception {
 		//加载项目信息
 		Map<String, ProjectUtil.WebXML> configInfo = ProjectUtil.load();
+		System.out.println("TomcatServer configInfo : " + configInfo.toString());
 		
 		ServerSocket serverSocket = new ServerSocket(port);
 		System.out.println("tomcat 服务器启动成功");
@@ -47,7 +48,6 @@ public class TomcatServer {
 						if (msg.length() == 0) {
 							break;
 						}
-						System.out.println(msg);
 						ParseUtil.parser(msg, savedRequest);
 					}
 					System.out.println("---------收到请求");
@@ -58,7 +58,18 @@ public class TomcatServer {
 					
 					StringTokenizer tokenizer = new StringTokenizer(savedRequest.getRequestURI(), "/");
 					//根据URL请求调用servlet方法
-					ProjectUtil.WebXML webXML = configInfo.get("/" + (tokenizer.hasMoreTokens() ? tokenizer.nextToken() : ""));
+					ProjectUtil.WebXML webXML = configInfo.get((tokenizer.hasMoreTokens() ? tokenizer.nextToken() : ""));
+					if (webXML == null) {
+						System.out.println("TomcatServer savedRequest uri : " + savedRequest.getRequestURI());
+						
+						//响应返回结果  200
+						OutputStream os = socket.getOutputStream();
+						os.write("HTTP/1.1 200 OK\r\n".getBytes());
+						os.write("Content-Lenght: 11\r\n\r\n".getBytes());
+						os.write("Hello World".getBytes());
+						os.flush();
+						return ;
+					}
 					String servletName = webXML.servletMapping.get("/" + (tokenizer.hasMoreTokens() ? tokenizer.nextToken() : ""));
 					Servlet servlet = webXML.servletInstances.get(servletName);
 					

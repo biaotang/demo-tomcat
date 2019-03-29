@@ -20,6 +20,9 @@ public class ParseUtil {
 			String uri = tokenizer.nextToken().toLowerCase();
 			savedRequest.setMethod(method);
 			savedRequest.setRequestURI(uri); 
+			
+			System.out.println("ParseUtil parser method : " + method);
+			System.out.println("ParseUtil parser uri : " + uri);
 		}
 		
 		// other params eg. Accept、 Cookie

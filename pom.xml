@@ -3,25 +3,47 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.demo</groupId>
   <artifactId>demo-tomcat</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0</version>
   <name>demo-tomcat Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <developers>
+      <developer>
+          <name>biao.tang</name>
+          <email>biaotangwork@gmail.com</email>
+          <organization>macrowing</organization>
+          <organizationUrl>http://www.macrowing.com/</organizationUrl>
+      </developer>
+  </developers>
+  
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+    
   <dependencies>
   	<dependency>
   	  <groupId>javax.servlet</groupId>
   	  <artifactId>javax.servlet-api</artifactId>
   	  <version>3.1.0</version>
   	</dependency>
-  
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
+  
   <build>
     <finalName>demo-tomcat</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.2</version>
+            <configuration>
+                <source>${maven.compiler.target}</source>
+                <target>${maven.compiler.target}</target>
+            </configuration>
+        </plugin>
+    </plugins>
+    <defaultGoal>compile</defaultGoal>
   </build>
+  
 </project>
