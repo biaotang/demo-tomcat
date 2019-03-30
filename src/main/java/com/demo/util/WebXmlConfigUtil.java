@@ -12,7 +12,7 @@ import org.xml.sax.ext.DefaultHandler2;
 
 import com.demo.util.ProjectUtil.WebXML;
 
-public class WebXmlConfigUtil extends DefaultHandler2 {
+public class WebXmlConfigUtil {
 	
 	protected SAXParserFactory factory = null;
 	
