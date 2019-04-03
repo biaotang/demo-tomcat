@@ -50,6 +50,13 @@ public class TomcatServer {
 						}
 						ParseUtil.parser(msg, savedRequest);
 					}
+					
+					//code to read the post payload data
+					StringBuilder payload = new StringBuilder();
+			        while(reader.ready()){
+			            payload.append((char) reader.read());
+			        }
+					
 					System.out.println("---------收到请求");
 					//根据用户请求的URL，找到相应的项目，并且调用相应的servlet
 					//GET /servlet-demo-1.0.0/index HTTP/1.1
