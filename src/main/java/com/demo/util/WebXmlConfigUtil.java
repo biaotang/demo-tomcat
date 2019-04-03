@@ -81,8 +81,7 @@ public class WebXmlConfigUtil {
 		@Override
 		public void startElement(String uri, String localName, String qName, Attributes attributes)
 				throws SAXException {
-			System.out.println("WebXmlConfigUtil startElement localName : " + localName);
-			System.out.println("WebXmlConfigUtil startElement qName : " + qName);
+//			System.out.println("WebXmlConfigUtil startElement qName : " + qName);
 			if ("servlet".equals(qName)) {
 				parseServlet = true;
 			}
@@ -109,10 +108,6 @@ public class WebXmlConfigUtil {
 				webXML.servletMapping.put(urlPattern, servletName);
 				reset();
 			}
-			
-			System.out.println("endElement WebXML servlets : " + webXML.servlets.toString());
-			System.out.println("endElement WebXML servletMapping : " + webXML.servletMapping.toString());
-			
 		}
 		
 		//正在解析的元素内容
